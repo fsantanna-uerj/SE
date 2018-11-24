@@ -5,7 +5,7 @@ void setup (void) {
   UBRR0H = BAUD >> 8;
   UBRR0L = BAUD;
 
-  /* Enable transmitter */
+  /* Enable receiver and transmitter */
   UCSR0B = (1<<RXEN0)|(1<<TXEN0);
   
   /* Set frame format: 8data, 2stop bit */
@@ -21,7 +21,7 @@ void loop (void) {
   unsigned char data = UDR0;
 
   data = data + ('A' - 'a');
-  //delay(1);
+  //delay(2);
   
   /* Wait for empty transmit buffer */
   while ( !( UCSR0A & (1<<UDRE0)) ) // UDRE="Data Register Empty"
